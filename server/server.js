@@ -6,14 +6,18 @@ const app = express();
 const cors = require('cors');
 
 app.use(cors({
-  origin: ['https://your-app.vercel.app', 'http://localhost:3000'],
+  origin: ['https://hacathon-metaverse.vercel.app', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
 
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: "*" } });
-
+const io = new Server(server, {
+  cors: {
+    origin: ['https://hacathon-metaverse.vercel.app', 'http://localhost:3000'],
+    credentials: true
+  }
+});
 const players = {};
 
 io.on("connection", (socket) => {
@@ -56,5 +60,5 @@ io.on("connection", (socket) => {
     io.emit("players-update", players);
   });
 });
-
-server.listen(5000, () => console.log("Server running on :5000"));
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log(`Server running on :${PORT}`));
