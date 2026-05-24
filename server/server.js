@@ -6,18 +6,16 @@ const app = express();
 const cors = require('cors');
 
 app.use(cors({
-  origin: ['https://hacathon-metaverse.vercel.app', 'http://localhost:3000'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+  origin: '*' // temporary to test
 }));
 
-const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ['https://hacathon-metaverse.vercel.app', 'http://localhost:3000'],
-    credentials: true
+    origin: '*' // temporary to test
   }
 });
+
+const server = http.createServer(app);
 const players = {};
 
 io.on("connection", (socket) => {
