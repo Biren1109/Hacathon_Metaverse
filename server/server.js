@@ -6,16 +6,23 @@ const app = express();
 const cors = require('cors');
 
 app.use(cors({
-  origin: '*' // temporary to test
+  origin: ['https://hacathon-metaverse.vercel.app', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
 
+// ✅ server defined BEFORE io
+const server = http.createServer(app);
+
+// ✅ io uses server AFTER it's defined
 const io = new Server(server, {
   cors: {
-    origin: '*' // temporary to test
+    origin: ['https://hacathon-metaverse.vercel.app', 'http://localhost:3000'],
+    credentials: true
   }
 });
 
-const server = http.createServer(app);
+
 const players = {};
 
 io.on("connection", (socket) => {
