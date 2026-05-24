@@ -14,8 +14,8 @@ export default function Home() {
   const [socketReady, setSocketReady] = useState(false);
 
   useEffect(() => {
-    // const socket = io("https://qsphackathon-2d-metaverese.onrender.com");
-    const socket = io("http://localhost:5000");
+    // ✅ Fix
+    const socket = io(process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:5000");
     socketRef.current = socket;
 
     socket.on("connect", () => {
