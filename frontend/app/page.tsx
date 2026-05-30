@@ -434,8 +434,8 @@ export default function Page() {
                 </p>
               </div>
               <div className="info-right">
-                <p className="info-label">EXPLORE OUR SPACES</p>
-                <a href="/space">
+                <p className="info-label">Get a Demo</p>
+                <a href="/meta">
                   <button className="explore-btn">
                     <span className="circle-btn"></span>
                   </button>
